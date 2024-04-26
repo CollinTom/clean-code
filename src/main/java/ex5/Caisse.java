@@ -7,52 +7,36 @@ public class Caisse {
 
     private String nom;
     private List<Item> items;
+    private int poidsMin;
+    private int poidsMax;
 
-    /**
-     * Constructeur
-     *
-     * @param nom
-     */
-    public Caisse(String nom) {
-        super();
+    public Caisse(String nom, int poidsMin, int poidsMax) {
         this.nom = nom;
         this.items = new ArrayList<>();
+        this.poidsMin = poidsMin;
+        this.poidsMax = poidsMax;
     }
 
-    /**
-     * Getter pour l'attribut nom
-     *
-     * @return the nom
-     */
-    public String getNom() {
-        return nom;
+    public boolean accepteItem(Item item) {
+        int poids = item.getPoids();
+        return poids >= poidsMin && (poidsMax == -1 || poids <= poidsMax);
     }
 
-    /**
-     * Setter pour l'attribut nom
-     *
-     * @param nom the nom to set
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void addItem(Item item) {
+        if (accepteItem(item)) {
+            items.add(item);
+        }
     }
 
-    /**
-     * Getter pour l'attribut items
-     *
-     * @return the items
-     */
     public List<Item> getItems() {
         return items;
     }
 
-    /**
-     * Setter pour l'attribut items
-     *
-     * @param items the items to set
-     */
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public String getNom() {
+        return nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
