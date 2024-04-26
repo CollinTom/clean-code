@@ -1,47 +1,67 @@
 package ex3;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe représentant un zoo avec un ensemble d'animaux.
+ */
 public class Zoo {
-
     private String nom;
-    private List<String> types;
-    private List<String> noms;
-    private List<String> comportements;
+    private List<Animal> animaux;
 
+    /**
+     * Constructeur pour créer un nouveau zoo avec un nom spécifié.
+     *
+     * @param nom Le nom du zoo.
+     */
     public Zoo(String nom) {
         this.nom = nom;
-    }
-
-    public void addAnimal(String nomAnimal, String typeAnimal, String comportement) {
-        types.add(typeAnimal);
-        noms.add(nomAnimal);
-        comportements.add(comportement);
-    }
-
-    public void afficherListeAnimaux() {
-        for (int i = 0; i < types.size(); i++) {
-            System.out.println(noms.get(i) + " " + types.get(i) + " " + comportements.get(i));
-        }
-    }
-
-    public int taille() {
-        return types.size();
+        this.animaux = new ArrayList<>();
     }
 
     /**
-     * Getter for nom
+     * Ajoute un animal au zoo.
      *
-     * @return the nom
+     * @param nomAnimal Le nom de l'animal à ajouter.
+     * @param typeAnimal Le type de l'animal (e.g., Mammifère, Poisson).
+     * @param comportement Le comportement alimentaire de l'animal (e.g., Herbivore, Carnivore).
+     */
+    public void addAnimal(String nomAnimal, String typeAnimal, String comportement) {
+        animaux.add(new Animal(nomAnimal, typeAnimal, comportement));
+    }
+
+    /**
+     * Affiche la liste de tous les animaux présents dans le zoo.
+     */
+    public void afficherListeAnimaux() {
+        for (Animal animal : animaux) {
+            System.out.println(animal);
+        }
+    }
+
+    /**
+     * Retourne le nombre total d'animaux dans le zoo.
+     *
+     * @return le nombre d'animaux.
+     */
+    public int taille() {
+        return animaux.size();
+    }
+
+    /**
+     * Getter pour le nom du zoo.
+     *
+     * @return le nom du zoo.
      */
     public String getNom() {
         return nom;
     }
 
     /**
-     * Setter
+     * Setter pour le nom du zoo.
      *
-     * @param nom the nom to set
+     * @param nom Le nouveau nom du zoo.
      */
     public void setNom(String nom) {
         this.nom = nom;
